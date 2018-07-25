@@ -1,0 +1,175 @@
+NOTE: This is LONG. This applies to more than just python.  My goal here is to give you the words used a lot in programming so that you can start learning and internalizing them so that it doesn't sound like French when you talk to another developer and they say "Pick an IDE and SCM, I need an API that works with our compiler and client side algorithms to parse the input from the API and use them".  If you are a new programmer, you probably want to kill me right now.  If you are anything like me when I began, you read it 4 times and wanted to punch me a little more each time.  Going over this [very long] guide, or ctrl+f when you need it, can help you get up to speed on common terms in programming and jump start your ability to understand technical conversations. 
+
+This guide is LONG. I hate when someone writes a guide and then you get all excited that its short and they just insert a ton of external links and the next thing you know, a few paragraphs turned into 20 open tabs and you aren't even sure where you started.  I'll grow this as I can.
+
+Also, this is going to live on my RMOTR github. I suggest you practice your newfound skills by finding inevitable errors in this document and changing them and submitting a pull request. (Or, you seasoned people, add!) It's just my personal repo, so don't worry about breaking it. I'll approve PR's that fix or contribute in a positive way (ie. if you change dicts to I HATE DICTS, i mightttt not approve you :P).  
+
+I suggest you take this oportunity to practice, its hard to get collaborative git experiece outside of a job enviornment. The more you do things like fork this to your personal repo, make changes, and contribute back, the more recruiters will want to talk to you.  Your github is often the first thing they check. 
+
+++++++++
+General:
+++++++++
+
+IDE - Integrated Development Enviornment. One step above a text editor.  Includes a source code editor, build automation tools, debuggers, access to various code libraries, etc. For example, I prefer Sublime Text 3.  It is lightweight and easy to start up, almost a text editor but fancier.  Other big IDEs you may have heard of are Eclipse, NetBeans, and IntelliJ.  There are many out there and youll discover your preferences as you go. 
+
+Version Control or SCM (Source Code Management) - keeping past versions of your code so you can do things like colaborate and revert. 
+
+Git - distributed revision control software that is used as a source code management system.
+
+SDK - Software development kit. Bundle of software tools to allow you to create new apps for a specific platform or framework.  You'll hear people get excited when companies release an SDK, its becauase you can go build on their platform now.  A really simple one to see is actually though Fitbit.  Our devs did a fantastic job on it, and its good for beginners. I wasn't on that team, I get no glory from it :P. It can be found here: https://dev.fitbit.com/.  You can also look up common SDKs and play with them if you want, it can be a lot of fun. 
+
+API - Application Programming Interface.  If you become a dev you'll hear this until your ears bleed.  Its basically just a set of rules that allow your code to communicate with third party software.  To break this down, imagine you speak english but you want to talk to a friend who only speaks french. In this situation, google translate could act as sort of an API to allow two totally different languages to communicate. It's just like that. 
+
+Algorithm - THE word for programming interviews. "Write me an algorithm that..." Dont let it scare you. While this gets really in depth, all it really means is logically how you solve a problem. 
+
+Compiler - This is kind of like an API but for your computer.  It takes all the code you write and translates it into "computer", aka a whole TON of 1's and 0's. As you can imagine, these are crucial because it would be torture to write code otherwise,
+
+Concatenation - Smooshing two or more things together back to front.  Pretty much anything, though its usually used when talking about strings. For example, if you concatenate the string "Leah" and the string "Baker" you'd get "Leah Baker". (You'd actually get "LeahBaker". but you get my point)
+
+Control Flow - This is the order your code is run in.  Simple programs will likely just run top to bottom, but this is important when you have large projects that jump all over various files and languages.  Imagine you have a little pink mouse named Bob.  Hes going to sneak into your code and act like a variable.  He attaches himself to the first thing in your code and then scrambles through it.  He might run straight down or he might jump to another file and float back on the coattails of variable that a function in that second file returned.  Bob's whole path, from when you hit run, to when your code {hopefully - watch those infinite loops!} stops is your control flow.
+
+Data Types - This is going to be all the different forms your data can take.  Every language tweaks them a bit, but there are some really common ones. Many of which you've already seen in this class!  Make sure you look up the developer reference for languages you use to see what data types you have available to you.  Python's lives here: https://docs.python.org/3/library/datatypes.html. Be sure you are on the languages documentation and not some random page.  In the mean time, these are common across languages. 
+	
+	*Boolean - True or False, 1 or 0. Can only have one of two states. Python also has a concept called Truthy or Falsey, as we have discussed.  For booleans in their natural state of True or False, this is rather simple. True is a Truthy value and False a Falsey value.  However, as you know, more than just booleans can be evaluated as true or false.  For example, 1 is usually true and 0 is usually false. As you progress, more advanced code does some cool optimization things with this. 
+
+	*Integer - As simple as it sounds. Integer. No decimals.  Something unique-ish to python is that there is no limit to how long this number can be.  In other languages, you might have types like "long" or "double" which hold things like long values if you exceede the limit for the integer for data types. This is not a thing in python, you are limited in your ints only by your system memory. 
+
+	*Float - Got a number that contains a decimal? Float is your guy!
+
+	*String/string - Sequences of character data. Depending on the language this can be anything from characters only to anything you want to put inside string notation (like var = "im a string", for example).  String is the one special one of the standard data types.  You don't need to dig into this, but if you want to give "why is String sometimes an object" to google and read about it.  For now, just know in various languages you might see string or String, and that capital is no mistake. 
+
+	*Dictionary - Im going to break this up into mini paragraphs because its going to be a lot.  There is a running joke that in all interview questions that "the answer is a hash map", which is synonomyous with python's dictionary. 
+		This one is the kicker if you learn other languages. Pretty much all languages have these. Without getting into TOO much headache, a dictionary (or as its commonly called in other languages, a Hash Ma or Hash Table) contains a bunch of key value pairs.  The reason that these are often called hash maps is because they are build on logic called a hash.  
+
+		Pause! Leah, what on earth is a hash? I'll go into more detail later, but basically its a function that takes in your key and spits out THE SAME VALUE EVERY TIME ITS RUN ON A PARTICULAR KEY(<-this is really important).  This cooresponds to a spot in the array (or set, in python. tldr, the memory slot its stored in)
+			Example:  You have a key value pair of (Leah : is the meanest teacher ever).  You have a popular hash function written by someone else that you give the key Leah. The funtion runs its magic and returns 5, so we will put it in the 5th slot of whatever data structure we are using which changes based on languages.  Now instead of needing the index of the value we want, we can use a human readable key!
+
+		Ok, so why is this cool?  Say we have a data structure, any data structure, that stores all the RMOTR instructors.  Say there are 20 of us and we want to keep track of how many classes each of us has taught.  Now, if you use a set/list/array etc. you can put in structure[1] = Leah: 5 (yes i know its a jumble of syntax, trying to make it readable!) and now we have some structure that has 'Leah:5' at its index of 1.  Now you add by hand all the strings for each person, and we have a structure with 20 index spots used, each with a string with an instructor and there course count.  It WORKS, we can go update our course count every course by hand and you can print them all to find what you are looking for, but its inneficient. Say you want to see how slackin' I am.  Turns out im at index 9, so structure[9] is the info you want, but getting it is a pain. 
+
+		Incoming, dictionaries!!! You seperate our names and course count so its 'Leah' : 5. Now you can search by the key you want! So look up the Leah key and youll get back the value 5. Also we can make this particular value set integers and build a function that increments our class count every time we "clock in", meaning we don't have to manually increment the coun every time by hand. 
+
+
+Contiguous vs. Non-Contigous Memory - This can get crazy but all you need to know for now is that contiguous memory is one big ol block in a row.  You go to that place in memory, you find all your data. Non-Contiguous says "ok computer, I have all this data. you have gaps. go fill it in and ill handle coming to find it.".  The computer will then place several blocks of data all over the darn place in memory.  An example of contiguous memory is arrays in java (don't worry you dont need to know ANYTHING about them :P).  Arrays are KiNdA like lists (I know, I know, they aren't. But for this example they are!).  Picure ten buckets tied together in order by a string.  When you want that you have to tell java you want 10.  Java says "ok!" and runs off to find a place in memory big enough for all your 10 buckets in order and sticks them there. As a result, you cant change the size of arrays.  Java also has something called an ArrayList, whos size can be changed as you add or remove. Because of this, you cant promise Java a size that your list is going to be.  Therefore it behaves non-contiguously so it can handle you adding 100 values or free up space if you remove a bunch.  As you continue in your programming journey, it will become more and more apparent what the upsides and downsides to each approach to data storage, but for now this is more than enough. 
+	
+
++++++++++
+TO DO, seperate out by pythonic or not:
++++++++++
+
+str
+function
+if/elif/else
+while
+try/catch
+not/and
+is
+True/Truthy
+False/Falsey
+void
+None
+django
+xml
+self
+def
+return
+import
+the
+in
+for
+from
+a
+to
+s
+name
+of
+except
+value
+class
+as 
+data
+x
+db
+path
+models
+id
+os
+fields
+assertEquals
+with
+context
+or
+type
+n
+get
+i
+be
+args
+raise
+len
+request
+result
+r
+append
+cls
+param
+this
+__init__
+sys
+list
+pass
+key
+response
+print
+object
+kwargs
+join
+utf
+Exception/exception
+format
+-----
+document
+module
+function
+class
+private
+public
+return
+array
+undefined/null/none/NaN(not a number)/0/False/False/not/and/nor/or/nand
+jQuery
+jSon
+push/pull
+break
+get
+state 
+elem
+node
+callback
+require
+obj/object/Object
+div
+use
+target
+set
+scope
+input
+arguments
+offset
+selector
+remove
+list
+map
+throw
+message
+instance
+params
+events
+log
+src
+response
+range
+size
+bind
+trigger
+
+
